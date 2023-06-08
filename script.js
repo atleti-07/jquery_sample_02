@@ -1,37 +1,30 @@
-// JavaScript Samples
-//背景色を変える
-function MyFunctionR(){
-    const obj = document.body;
-    obj.style.backgroundColor = 'red';
-  }
-  
-  function MyFunctionG(){
-    const obj = document.body;        
-    obj.style.backgroundColor = 'green';
-  }
-  
-  function MyFunctionB(){
-    const obj = document.body;
-    obj.style.backgroundColor = 'blue';
-  }
+// Fade Sample ////////////
+$( function() {
 
-  //引数を用いた背景色の変更
-function MyFunction05( color ){
-    const obj = document.body;
-    obj.style.backgroundColor = color;
-  }
+  $(".fade").fadeTo(0,0.2); // 初期状態 20%
 
-  //ランダムな16進6桁のカラーコードを生成（汎用性のある関数）
-function randomColor() {
-    let col = Math.floor(Math.random() * 0xFFFFFF).toString(16);
-    for (let i = col.length; i < 6; i++) {
-      col = '0' + col;
+  $(".fade").hover(
+    function(){
+      $(this).fadeTo("fast", 1.0); // マウスが載ったら100%までフェードする
+    },
+    function(){
+      $(this).fadeTo("slow", 0.2); // マウスが離れたら20%に戻す
     }
-    return '#' + col;
-  }
-  
-  // 背景色の変更
-  function MyFunction06(){
-    const obj = document.body;
-    obj.style.backgroundColor = randomColor();
-  }
+  );
+
+});
+
+// Animate Sample //////////
+$( function(){
+  $("#left").click( function(){
+    $('#move').animate( { 'left': '-=300px' } , { 'duration': 1000 } );
+  });
+  $("#right").click( function(){
+    $('#move').animate( { 'left': '+=300px' } , { 'duration': 1000 } );
+  });
+  $("#center").click( function(){
+    var optionObj = new Object();
+    optionObj.left = $('body').outerWidth() / 2 - 100;
+    $('#move').animate( optionObj , { 'duration': 1000 } );
+  });
+});
